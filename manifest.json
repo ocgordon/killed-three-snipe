@@ -3,11 +3,13 @@
   "name": "Killed three snipe",
   "description": "And so did everyone else",
   "version": "1.0",
+  "permissions": ["https://twitter.com/*"],
   "content_scripts": [
     {
-      "matches": ["*://*/*"],
+      "matches": ["https://twitter.com/*"],
       "js": ["content.js"],
       "run_at": "document_end"
     }
-  ]
+  ],
+  "web_accessible_resources": ["content.js"]
 }
