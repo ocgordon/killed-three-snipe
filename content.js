@@ -1,30 +1,32 @@
 //Ensure DOM is loaded.
 // document.addEventListener('DOMContentLoaded', function() {
 // Get tweets from feed.
-var tweets = document.getElementsByClassName('css-1dbjc4n r-my5ep6 r-qklmqi r-1adg3ll');
-
-console.log(tweets);
-
-function collectionToArray(tweets) {
-  var i,
-    length = tweets.length,
-    tweetsArray = [];
-  for (i = 0; i < length; i++) {
-    tweetsArray.push(tweets[i]);
-  }
-  return tweetsArray;
-}
+var tweets
+const snipeChance = .5
+const snipeResponses = [
+  ". Killed three snipe.",
+  ". Stay at home.",
+  ". I'm satisfied with my day.",
+  ". I've become even more religious in the country.",
+  ". I hardly slept all night."
+]
 
 // Iterate through tweets and add snipe murders.
 function killSnipe() {
   for (var i = 0; i < tweets.length; i++) {
     var tweet = tweets[i];
-    console.log('Made it to the loop!');
-    tweet.innerHTML = tweet.innerHTML + 'Killed three snipe.';
+    tweet.classList.add("sniped");
+    if (Math.random() < snipeChance) {
+      tweet.innerHTML = tweet.innerHTML + snipeResponses[Math.floor(Math.random() * snipeResponses.length)];
+    }
   }
 }
 
 var observer = new MutationObserver(mutations => {
+  tweets = Array.prototype.slice.call(document.querySelectorAll('body > div > div > div > div > main > div > div > div > div > div > div > div > div > section > div > div > div >div > div > article > div > div > div > div > span'),0).filter((tweet) => {
+    return !tweet.classList.contains("sniped")
+  })
+  console.log(tweets.length)
   mutations.forEach(mutation => {
     killSnipe();
   });
