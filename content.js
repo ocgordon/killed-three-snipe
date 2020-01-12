@@ -2,13 +2,9 @@
 // document.addEventListener('DOMContentLoaded', function() {
 // Get tweets from feed.
 var tweets
-const snipeChance = .5
+const snipeChance = 1
 const snipeResponses = [
-  ". Killed three snipe.",
-  ". Stay at home.",
-  ". I'm satisfied with my day.",
-  ". I've become even more religious in the country.",
-  ". I hardly slept all night."
+  ". Killed three snipe."
 ]
 
 // Iterate through tweets and add snipe murders.
@@ -23,10 +19,9 @@ function killSnipe() {
 }
 
 var observer = new MutationObserver(mutations => {
-  tweets = Array.prototype.slice.call(document.querySelectorAll('body > div > div > div > div > main > div > div > div > div > div > div > div > div > section > div > div > div >div > div > article > div > div > div > div > span'),0).filter((tweet) => {
+  tweets = Array.prototype.slice.call(document.querySelectorAll('body > div > div > div > div > main > div > div > div > div > div > div > div > div > section > div > div > div >div > div > article > div > div > div > div > span:last-child'),0).filter((tweet) => {
     return !tweet.classList.contains("sniped")
   })
-  console.log(tweets.length)
   mutations.forEach(mutation => {
     killSnipe();
   });
