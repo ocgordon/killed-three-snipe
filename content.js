@@ -2,7 +2,7 @@
 // document.addEventListener('DOMContentLoaded', function() {
 // Get tweets from feed.
 var tweets
-const snipeChance = 1
+const snipeChance = .4
 const snipeResponses = [
   ". Killed three snipe."
 ]
